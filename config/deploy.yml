@@ -22,6 +22,7 @@ registry:
 env:
   clear:
     DB_HOST: 172.24.95.63
+    DB_USERNAME: waitest
   secret:
     - RAILS_MASTER_KEY
     - DB_HOST
