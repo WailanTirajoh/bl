@@ -11,27 +11,29 @@
             </ul>
         </li>
         <li class="border-b border-b-[#2e416a] py-2">
-            <div class="px-6 py-2">
-                <div class="flex justify-between items-center">
-                    <div class="">
-                        Manage
-                    </div>
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"/></svg>
-                    </div>
+            <div data-controller="collapse">
+                <div class="px-6 py-2">
+                    <button class="flex justify-between items-center w-full" data-action="click->collapse#toggle">
+                        <div class="">
+                            Manage
+                        </div>
+                        <div data-collapse-target="icon" class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"/></svg>
+                        </div>
+                    </button>
                 </div>
+                <ul data-collapse-target="content">
+                    <li>
+                        <%= link_to "Posts", posts_path, class: "block px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200 bg-white bg-opacity-20" %>
+                    </li>
+                    <li class="px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200">
+                        Categories
+                    </li>
+                    <li class="px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200">
+                        Users
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li>
-                    <%= link_to "Posts", posts_path, class: "block px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200 bg-white bg-opacity-20" %>
-                </li>
-                <li class="px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200">
-                    Categories
-                </li>
-                <li class="px-6 py-2 hover:bg-white hover:bg-opacity-20 duration-200">
-                    Users
-                </li>
-            </ul>
         </li>
     </ul>
 </aside>
