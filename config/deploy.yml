@@ -30,9 +30,8 @@ env:
     - DB_PASSWORD
     - DB_DATABASE
 # Use a different ssh user than root
-# ssh:
-#   user: app
-
+ssh:
+  user: wailan
 # Configure builder setup.
 # builder:
 #   args:
