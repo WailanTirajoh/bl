@@ -2,7 +2,7 @@
 service: my-app
 
 # Name of the container image.
-image: wailan41/my-app
+image: wailan41/my-app-3
 
 # Deploy to these servers.
 servers:
