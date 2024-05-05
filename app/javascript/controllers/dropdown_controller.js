@@ -27,7 +27,10 @@ export default class extends Controller {
   }
 
   hideOnClickOutside = (e) => {
-    if (!this.element.contains(e.target)) {
+    if (
+      !this.element.contains(e.target) &&
+      !this.contentTarget.classList.contains("hidden")
+    ) {
       this.hide();
     }
   };
