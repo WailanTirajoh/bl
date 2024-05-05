@@ -1,24 +1,67 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="dropdown"
 export default class extends Controller {
   static targets = ["content"];
+  static animationDuration = 300;
 
   connect() {
-    this.hide();
-    document.addEventListener("click", this.hide);
+    const classList = this.contentTarget.classList;
+    if (!classList.contains("hidden")) {
+      classList.add("hidden");
+    }
+
+    document.addEventListener("click", this.hideOnClickOutside);
   }
 
   disconnect() {
-    document.removeEventListener("click", this.hide);
+    document.removeEventListener("click", this.hideOnClickOutside);
   }
 
   toggle(e) {
-    e.stopPropagation(); // prevent onclick event on connect to fire
-    this.contentTarget.classList.toggle("hidden");
+    e.stopPropagation();
+    if (this.contentTarget.classList.contains("hidden")) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
-  hide = () => {
-    this.contentTarget.classList.add("hidden");
+  hideOnClickOutside = (e) => {
+    if (!this.element.contains(e.target)) {
+      this.hide();
+    }
   };
+
+  hide() {
+    this.animateOut();
+  }
+
+  show() {
+    this.animateIn();
+  }
+
+  animateIn() {
+    this.contentTarget.classList.add("opacity-0");
+    this.contentTarget.classList.remove("hidden");
+
+    // Triggers delay to perform animation
+    setTimeout(() => {
+      this.contentTarget.classList.add("fade-in");
+    }, 10);
+
+    // Transition cleanup
+    setTimeout(() => {
+      this.contentTarget.classList.remove("opacity-0");
+      this.contentTarget.classList.remove("fade-in");
+    }, this.constructor.animationDuration);
+  }
+
+  animateOut() {
+    this.contentTarget.classList.add("fade-out");
+
+    setTimeout(() => {
+      this.contentTarget.classList.add("hidden");
+      this.contentTarget.classList.remove("fade-out");
+    }, this.constructor.animationDuration);
+  }
 }
