@@ -6,7 +6,7 @@ image: wailan41/my-app-3
 
 # Deploy to these servers.
 servers:
-  - 172.24.95.63
+  - <%= ENV["DPL_SERVER"] %>
 
 # Credentials for your image host.
 registry:
@@ -21,7 +21,7 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: 172.24.95.63
+    DB_HOST: <%= ENV["DPL_SERVER"] %>
     DB_USERNAME: waitest
   secret:
     - RAILS_MASTER_KEY
