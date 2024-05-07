@@ -6,7 +6,7 @@ image: wailan41/my-app-3
 
 # Deploy to these servers.
 servers:
-  - <%= ENV["DPL_SERVER"] %>
+  - <%= ENV["DPL_HOST"] %>
 
 # Credentials for your image host.
 registry:
@@ -21,7 +21,7 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: <%= ENV["DPL_SERVER"] %>
+    DB_HOST: <%= ENV["DPL_HOST"] %>
     DB_USERNAME: waitest
   secret:
     - RAILS_MASTER_KEY
@@ -32,7 +32,7 @@ env:
     - DB_DATABASE
 # Use a different ssh user than root
 ssh:
-  user: <%= ENV["dpl_user"] %>
+  user: <%= ENV["DPL_USERNAME"] %>
 # Configure builder setup.
 # builder:
 #   args:
