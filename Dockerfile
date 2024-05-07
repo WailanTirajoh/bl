@@ -20,11 +20,17 @@ RUN apk --no-cache add \
     build-base \
     git \
     postgresql-dev \
-    libvips-dev \
+    # libvips-dev \
     pkgconfig \
     curl \
     nodejs \
-    yarn
+    yarn \
+    && curl -sSL https://github.com/libvips/libvips/releases/download/v8.11.4/vips-8.11.4.tar.gz | tar xz \
+    && cd vips-8.11.4 \
+    && ./configure --prefix=/usr/local \
+    && make \
+    && make install \
+    && rm -rf /tmp/*
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
