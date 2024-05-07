@@ -20,17 +20,14 @@ RUN apk --no-cache add \
     build-base \
     git \
     postgresql-dev \
-    # libvips-dev \
     pkgconfig \
     curl \
     nodejs \
-    yarn \
-    && curl -sSL https://github.com/libvips/libvips/releases/download/v8.11.4/vips-8.11.4.tar.gz | tar xz \
-    && cd vips-8.11.4 \
-    && ./configure --prefix=/usr/local \
-    && make \
-    && make install \
-    && rm -rf /tmp/*
+    yarn
+
+RUN apk --no-cache add vips-dev fftw-dev build-base --no-cache \
+    --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
+    --repository https://dl-3.alpinelinux.org/alpine/edge/main
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
