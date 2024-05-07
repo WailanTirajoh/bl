@@ -32,7 +32,7 @@ env:
     - DB_DATABASE
 # Use a different ssh user than root
 ssh:
-  user: wailan
+  user: <%= ENV["dpl_user"] %>
 # Configure builder setup.
 # builder:
 #   args:
